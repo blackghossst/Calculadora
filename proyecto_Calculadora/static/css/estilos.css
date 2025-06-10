@@ -1,0 +1,18 @@
+        body{
+            background-color: rgba(244, 200, 200, 0.7);  ;
+        }
+        
+        .fondo {
+            background-image: url("../img/image.png"); /* Cambia esto a tu imagen */
+            background-size: cover;             /* Para que cubra todo el div */
+            background-position: center;
+            height: 400px;
+            display: flex;                      /* Centra el texto */
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2em;
+            font-family: Arial, sans-serif;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.7); /* Mejora legibilidad */
+            margin: 20px  5px;
+        }
