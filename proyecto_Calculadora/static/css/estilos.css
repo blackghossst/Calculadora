@@ -1,18 +1,377 @@
-        body{
-            background-color: rgba(244, 200, 200, 0.7);  ;
+body {
+            background-color: #f5f9fc;
+            color: #2a3f54;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
-        
-        .fondo {
-            background-image: url("../img/image.png"); /* Cambia esto a tu imagen */
-            background-size: cover;             /* Para que cubra todo el div */
-            background-position: center;
-            height: 400px;
-            display: flex;                      /* Centra el texto */
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 2em;
-            font-family: Arial, sans-serif;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.7); /* Mejora legibilidad */
-            margin: 20px  5px;
+        .form-container, #resultado, #historial {
+            background-color: #e9f0f7;
+            border: 1px solid #aac5dd;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+        h1, h2 {
+            color: #1f3a5f;
+        }
+        .iteration-card {
+            background-color: #d6e4f0;
+            border: 1px solid #aac5dd;
+            border-radius: 6px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+
+        body.dark-mode {
+            background-color: #121212;
+            color: #e1e1e1;
+        }
+        body.dark-mode .form-container,
+        body.dark-mode #resultado,
+        body.dark-mode #historial {
+            background-color: #1e1e1e;
+            border-color: #4a90e2;
+            color: #e1e1e1;
+        }
+        body.dark-mode .iteration-card {
+            background-color: #2c2c2c;
+            border-color: #4a90e2;
+        }
+        body.dark-mode .progress {
+            background-color: #333;
+        }
+        body.dark-mode .progress-bar {
+            background-color: #88b6f9;
+            color: #121212;
+        }
+        body.dark-mode button.btn-secondary {
+            background-color: #4a90e2;
+            border-color: #4a90e2;
+            color: #121212;
+        }
+
+
+        /* ---- Codigo nestor -----------*/
+
+        * Reset y configuración base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Navbar */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(15px);
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 70px;
+}
+
+.nav-logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    background: linear-gradient(45deg, #667eea, #764ba2);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.nav-icon {
+    font-size: 1.8rem;
+}
+
+.nav-menu {
+    display: flex;
+    list-style: none;
+    gap: 30px;
+}
+
+.nav-item {
+    position: relative;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+    padding: 8px 16px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.nav-link:hover {
+    color: #667eea;
+    background: rgba(102, 126, 234, 0.1);
+}
+
+.nav-link.active {
+    color: #667eea;
+    background: rgba(102, 126, 234, 0.15);
+}
+
+.nav-link.active::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 16px;
+    right: 16px;
+    height: 2px;
+    background: linear-gradient(45deg, #667eea, #764ba2);
+    border-radius: 1px;
+}
+
+.nav-toggle {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.bar {
+    width: 25px;
+    height: 3px;
+    background: #333;
+    margin: 3px 0;
+    transition: 0.3s;
+    border-radius: 2px;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    padding-top: 80px;
+    overflow-x: hidden;
+}
+
+/* Contenedor principal */
+.container {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    max-width: 600px;
+    width: 100%;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    position: relative;
+    margin: 50px auto;
+}
+
+/* Header */
+.header {
+    margin-bottom: 40px;
+}
+
+.logo {
+    font-size: 2.5rem;
+    font-weight: bold;
+    background: linear-gradient(45deg, #667eea, #764ba2);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    color: #666;
+    font-size: 1.1rem;
+    margin-bottom: 30px;
+}
+
+/* Grid de métodos */
+.methods-grid {
+    display: grid;
+    gap: 30px;
+    margin-bottom: 30px;
+}
+
+/* Tarjetas de métodos */
+.method-card {
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    border: none;
+    border-radius: 15px;
+    padding: 30px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: white;
+    text-decoration: none;
+    display: block;
+    position: relative;
+    overflow: hidden;
+}
+
+.method-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+    text-decoration: none;
+    color: white;
+}
+
+.method-card:active {
+    transform: translateY(-2px) scale(0.98);
+}
+
+/* Colores específicos para cada método */
+.method-card.muller {
+    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+}
+
+.method-card.gauss {
+    background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+}
+
+/* Elementos de las tarjetas */
+.method-icon {
+    font-size: 3rem;
+    margin-bottom: 15px;
+    display: block;
+}
+
+.method-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.method-description {
+    font-size: 0.95rem;
+    opacity: 0.9;
+    line-height: 1.4;
+}
+
+/* Footer */
+.footer {
+    color: #888;
+    font-size: 0.9rem;
+    border-top: 1px solid #eee;
+    padding-top: 20px;
+    margin-top: 20px;
+}
+
+/* Efecto de onda */
+.wave {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100px;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath d='M985.66,92.83C906.67,72,823.78,31,743.84,14.19c-82.26-17.34-168.06-16.33-250.45.39-57.84,11.73-114,31.07-172,41.86A600.21,600.21,0,0,1,0,27.35V120H1200V95.8C1132.19,118.92,1055.71,111.31,985.66,92.83Z' fill='%23ffffff20'%3E%3C/path%3E%3C/svg%3E") repeat-x;
+    background-size: 1200px 100px;
+    opacity: 0.3;
+    animation: wave 10s ease-in-out infinite;
+}
+
+/* Partículas flotantes */
+.particle {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.6);
+    border-radius: 50%;
+    pointer-events: none;
+    animation: float 6s ease-in-out infinite;
+}
+
+.particle-1 {
+    top: 20%;
+    left: 10%;
+    animation-delay: 0s;
+}
+
+.particle-2 {
+    top: 60%;
+    left: 85%;
+    animation-delay: 1s;
+}
+
+.particle-3 {
+    top: 80%;
+    left: 20%;
+    animation-delay: 2s;
+}
+
+.particle-4 {
+    top: 30%;
+    left: 70%;
+    animation-delay: 3s;
+}
+
+.particle-5 {
+    top: 10%;
+    left: 90%;
+    animation-delay: 4s;
+}
+
+/* Animaciones */
+@keyframes wave {
+    0%, 100% { 
+        transform: translateX(0px); 
+    }
+    50% { 
+        transform: translateX(-100px); 
+    }
+}
+
+@keyframes float {
+    0%, 100% { 
+        transform: translateY(0px) rotate(0deg); 
+        opacity: 1
+    }
+}
+
+/* ---------- index prueba --------*/
+
+body {
+            padding-top: 20px;
+            padding-bottom: 20px;
+        }
+        .container {
+            max-width: 900px;
+        }
+        .card-header {
+            font-weight: bold;
+        }
+        .step-list {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        .step-list li {
+            margin-bottom: 5px;
+            white-space: pre-wrap; /* Mantiene saltos de línea y espacios del Python */
+            font-family: monospace; /* Fuente monoespaciada para los pasos */
+            font-size: 0.9em;
+        }
+        .step-list li strong {
+            color: #0056b3; /* Color para negritas */
+        }
+        .step-list li.separator {
+            border-bottom: 1px dashed #ccc;
+            margin: 10px 0;
+            padding-bottom: 5px;
+        }
+        .explanation-section {
+            background-color: #f8f9fa;
+            border-left: 5px solid #007bff;
+            padding: 15px;
+            margin-bottom: 20px;
         }
