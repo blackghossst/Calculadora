@@ -1,0 +1,86 @@
+{% load static%}
+{% load custom_filters %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cuadratura Gaussiana Adaptativa</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static '../static/css/estilos.css' %}">
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1 class="mb-4 text-center">Calculadora de Cuadratura Gaussiana Adaptativa</h1>
+
+        <div class="explanation-section">
+            <p>La **Cuadratura Gaussiana Adaptativa** es un método numérico para calcular integrales definidas. En lugar de usar un número fijo de puntos, este algoritmo adapta la subdivisión del intervalo de integración para lograr una precisión deseada.</p>
+            <p>Aquí usamos la regla de 2 puntos de Gauss, que aproxima la integral en un subintervalo $[a, b]$ como:</p>
+            $$ \int_{a}^{b} f(x) \,dx \approx \frac{b-a}{2} [f\left(\frac{a+b}{2} - \frac{b-a}{2\sqrt{3}}\right) + f\left(\frac{a+b}{2} + \frac{b-a}{2\sqrt{3}}\right)] $$
+            <p>El método es "adaptativo" porque calcula la integral de un intervalo y luego la compara con la suma de las integrales de sus dos mitades. Si la diferencia (el error estimado) es mayor que una tolerancia predefinida, el intervalo se subdivide y el proceso se repite en los nuevos subintervalos. Esto permite concentrar los cálculos donde la función es más "difícil" de integrar, mejorando la eficiencia y precisión.</p>
+        </div>
+
+
+        <div class="card mb-4">
+            <div class="card-header">
+                Ingresar Función y Límites
+            </div>
+            <div class="card-body">
+                <form method="post">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit" class="btn btn-primary">Calcular Integral</button>
+                </form>
+            </div>
+        </div>
+
+        {% if result %}
+            <div class="card mb-4 bg-success text-white">
+                <div class="card-header">
+                    Resultado Final
+                </div>
+                <div class="card-body">
+                    <p class="h4">$$ \int_{{ form.a.value|floatformat:"2" }}^{{ form.b.value|floatformat:"2" }} {{ form.function.value }} \,dx \approx {{ result }} $$</p>
+                </div>
+            </div>
+        {% endif %}
+
+        {% if error %}
+            <div class="alert alert-danger" role="alert">
+                {{ error }}
+            </div>
+        {% endif %}
+
+        {% if steps %}
+            <div class="card">
+                <div class="card-header">
+                    Detalle de los Pasos (Método Adaptativo)
+                </div>
+                <div class="card-body">
+                    <ul class="step-list">
+                        {% for step in steps %}
+                            {% if "---" in step %}
+                                <li class="separator"></li>
+                            {% else %}
+                                <li>{{ step|replace_bold|safe|linebreaksbr }}</li>
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script>
+        // Custom filter for Django template to replace markdown bold
+        // This is a simple example, for full markdown a library would be better
+        // For security, ensure user input to 'step' is not rendered without sanitization
+        // This is a basic replacement for demonstration of simple markdown
+        String.prototype.replace = function(search, replace) {
+            return this.split(search).join(replace);
+        };
+    </script>
+</body>
+</html>

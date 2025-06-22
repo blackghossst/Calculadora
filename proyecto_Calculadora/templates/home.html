@@ -3,27 +3,74 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Mi Página</title>
-
-    <!-- CSS de Bootstrap (opcional) -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Tu CSS personalizado -->
-    <link rel="stylesheet" href="{% static '/css/estilos.css' %}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MathLab - Métodos Numéricos</title>
+    <link rel="stylesheet" href="{% static '../static/css/estilos.css' %}">
 </head>
 <body>
-<ul class="nav justify-content-center">
-  <li class="nav-item">
-    <a class="nav-link active" aria-current="page" href="#">inicio</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" href="#">Registrate</a>
-  </li>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <span class="nav-icon">🧮</span>
+                MathLab
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="#" class="nav-link active">Inicio</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">Resgistro</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">Ingreso</a>
+                </li>
+            </ul>
+            <div class="nav-toggle">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
 
-</ul>
-    <div class="fondo">
-        ¡Bienvenido con estilo!
+    <div class="container">
+        <div class="header">
+            <div class="logo">MathLab</div>
+            <p class="subtitle">Plataforma de Métodos Numéricos Interactivos</p>
+        </div>
+
+        <div class="methods-grid">
+            <a href="/formulario_muller" class="method-card muller">
+                <div class="wave"></div>
+                <span class="method-icon">🔍</span>
+                <h3 class="method-title">Método de Muller</h3>
+                <p class="method-description">
+                    Encuentra raíces de funciones utilizando interpolación parabólica. 
+                    Ideal para funciones complejas y polinomios de alto grado.
+                </p>
+            </a>
+
+            <a href="/cuadratura" class="method-card gauss">
+                <div class="wave"></div>
+                <span class="method-icon">📊</span>
+                <h3 class="method-title">Método Gaussiano</h3>
+                <p class="method-description">
+                    Resuelve sistemas de ecuaciones lineales mediante eliminación gaussiana. 
+                    Perfecto para matrices y sistemas complejos.
+                </p>
+            </a>
+        </div>
+
+        <div class="footer">
+            <p>Selecciona un método para comenzar tu ejercicio interactivo</p>
+        </div>
+
+        <!-- Partículas decorativas -->
+        <div class="particle particle-1"></div>
+        <div class="particle particle-2"></div>
+        <div class="particle particle-3"></div>
+        <div class="particle particle-4"></div>
+        <div class="particle particle-5"></div>
     </div>
-
 </body>
 </html>
